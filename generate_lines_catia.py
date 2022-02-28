@@ -10,6 +10,9 @@ def generate_lines_catia(transfered_coord):
     ref_body = oPart.CreateReferenceFromObject(myPBody)
     oPart.HybridShapeFactory.ChangeFeatureName(ref_body, "GeometryFromNC")
 
+    #AxisSystem = oPart.AxisSystems.Item("alignment")
+
+
     for i in transfered_coord:
         #print(i)
         x, y, z, di, dj, dk, = i[1:7]
@@ -21,15 +24,20 @@ def generate_lines_catia(transfered_coord):
         tip_z = z - correct_length * dk
         Point = oPart.HybridShapeFactory.\
                         AddNewPointCoord(tip_x * 25.4, tip_y * 25.4, tip_z * 25.4)
+        #Point.RefAxisSystem = oPart.CreateReferenceFromObject(AxisSystem)
+
+
 
         Dir = oPart.HybridShapeFactory.AddNewDirectionByCoord(di, dj, dk)
-        #Line = oPart.HybridShapeFactory.AddNewLinePtDir(Point, Dir, 0, 1 * 25.4, False)
+        #Dir.RefAxisSystem = oPart.CreateReferenceFromObject(AxisSystem)
 
-        myPBody.AppendHybridShape(Point)
-        #myPBody.AppendHybridShape(Line)
+        Line = oPart.HybridShapeFactory.AddNewLinePtDir(Point, Dir, 0, 1 * 25.4, False)
 
-        ref_line = oPart.CreateReferenceFromObject(Point)
-        #ref_line = oPart.CreateReferenceFromObject(Line)
+        #myPBody.AppendHybridShape(Point)
+        myPBody.AppendHybridShape(Line)
+
+        #ref_line = oPart.CreateReferenceFromObject(Point)
+        ref_line = oPart.CreateReferenceFromObject(Line)
 
 
         oPart.HybridShapeFactory.ChangeFeatureName(ref_line, i[0])
