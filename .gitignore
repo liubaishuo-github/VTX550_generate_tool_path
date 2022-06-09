@@ -1,3 +1,4 @@
 
 *.CATPart
 *.CATProduct
+*.pyc

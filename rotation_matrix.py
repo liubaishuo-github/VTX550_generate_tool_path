@@ -51,7 +51,7 @@ def transf(retrieved_coord):
     for i in retrieved_coord:
         #print(i)
         pch_x, pch_y, pch_z, pch_b, pch_c = float(i[1]), float(i[2]), float(i[3]), radians(float(i[4])), radians(float(i[5]))
-        apt_coord = rot_z(pch_c) * translation_z(100/25.4) * rot_x(pch_b) * translation_z(17.7156) * mat([pch_x, pch_y, pch_z, 1]).T
+        apt_coord = rot_z(pch_c) * translation_z(100/25.4) * rot_x(pch_b) * translation_z(450/25.4) * mat([pch_x, pch_y, pch_z, 1]).T
         apt_x, apt_y, apt_z = apt_coord[0,0], apt_coord[1,0], apt_coord[2,0]
 
         apt_vector = rot_z(pch_c) * rot_x(pch_b) * mat([0,0,1,1]).T
