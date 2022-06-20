@@ -2,3 +2,6 @@
 *.CATPart
 *.CATProduct
 *.pyc
+retrieved_coord.txt
+VTX550.pch
+transfered_coord.txt
